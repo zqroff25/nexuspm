@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NexusPM - AI Workstation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1456b8",
+              "slate-dark": "#172B4D",
+              "slate-med": "#637288",
+              "silver-light": "#F3F4F6",
+              "background-light": "#ffffff",
+              "background-off": "#f9fafb",
+              "background-dark": "#111721",
+              "color-1": "hsl(var(--color-1))",
+              "color-2": "hsl(var(--color-2))",
+              "color-3": "hsl(var(--color-3))",
+              "color-4": "hsl(var(--color-4))",
+              "color-5": "hsl(var(--color-5))",
+            },
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+              sans: ["Inter", "sans-serif"],
+            },
+            boxShadow: {
+              glass: "0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)",
+              float: "0 10px 40px -10px rgba(0,0,0,0.08)",
+            },
+            animation: {
+              "fade-in": "fadeIn 0.3s ease-out forwards",
+              "float": "float 6s ease-in-out infinite",
+              "float-delayed": "float 6s ease-in-out 3s infinite",
+              "float-slow": "float 8s ease-in-out infinite",
+            },
+            keyframes: {
+              fadeIn: {
+                "0%": { opacity: "0", transform: "translateY(10px)" },
+                "100%": { opacity: "1", transform: "translateY(0)" },
+              },
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-20px)" },
+              },
+              "gradient-border": {
+                "0%, 100%": { borderRadius: "37% 29% 27% 27% / 28% 25% 41% 37%" },
+                "25%": { borderRadius: "47% 29% 39% 49% / 61% 19% 66% 26%" },
+                "50%": { borderRadius: "57% 23% 47% 72% / 63% 17% 66% 33%" },
+                "75%": { borderRadius: "28% 49% 29% 100% / 93% 20% 64% 25%" },
+              },
+              "gradient-1": {
+                "0%, 100%": { top: "0", right: "0" },
+                "50%": { top: "50%", right: "25%" },
+                "75%": { top: "25%", right: "50%" },
+              },
+              "gradient-2": {
+                "0%, 100%": { top: "0", left: "0" },
+                "60%": { top: "75%", left: "25%" },
+                "85%": { top: "50%", left: "50%" },
+              },
+              "gradient-3": {
+                "0%, 100%": { bottom: "0", left: "0" },
+                "40%": { bottom: "50%", left: "25%" },
+                "65%": { bottom: "25%", left: "50%" },
+              },
+              "gradient-4": {
+                "0%, 100%": { bottom: "0", right: "0" },
+                "50%": { bottom: "25%", right: "40%" },
+                "90%": { bottom: "50%", right: "25%" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+      :root {
+        --color-1: 330 100% 40%; /* Dark Neon Pink */
+        --color-2: 140 100% 55%; /* Bright Electric Green */
+        --color-3: 210 100% 30%; /* Deep Neon Blue */
+        --color-4: 60 100% 70%; /* Light Neon Yellow */
+        --color-5: 295 100% 45%; /* Dark Neon Purple */
+        --brand: 50 100% 50%; /* Bright, punchy yellow */
+      }
+
+      .dark {
+        --color-1: 330 100% 40%; /* Dark Neon Pink */
+        --color-2: 140 100% 55%; /* Bright Electric Green */
+        --color-3: 210 100% 30%; /* Deep Neon Blue */
+        --color-4: 60 100% 70%; /* Light Neon Yellow */
+        --color-5: 295 100% 45%; /* Dark Neon Purple */
+        --brand: 50 100% 50%; /* Bright, punchy yellow */
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+      }
+      
+      /* Markdown Body Styling - Light Mode */
+      .markdown-body {
+        font-size: 15px;
+        line-height: 1.6;
+        color: #172B4D;
+      }
+      .markdown-body h1, .markdown-body h2, .markdown-body h3 {
+        font-weight: 700;
+        margin-top: 1.5em;
+        margin-bottom: 0.75em;
+        color: #111721;
+      }
+      .markdown-body strong { font-weight: 600; color: #000; }
+      .markdown-body blockquote {
+        border-left: 4px solid #1456b8;
+        padding-left: 1em;
+        color: #637288;
+        background: #f3f4f6;
+        padding: 0.5em 1em;
+        border-radius: 0 4px 4px 0;
+        margin-bottom: 1em;
+      }
+      .markdown-body table { width: 100%; border-collapse: collapse; margin-bottom: 1.5em; font-size: 14px; }
+      .markdown-body th { background-color: #f3f4f6; font-weight: 600; text-align: left; padding: 0.75em; border: 1px solid #e5e7eb; }
+      .markdown-body td { padding: 0.75em; border: 1px solid #e5e7eb; }
+      .markdown-body tr:nth-child(even) { background-color: #f9fafb; }
+      .markdown-body code { background-color: #f1f5f9; padding: 0.2em 0.4em; border-radius: 4px; font-family: monospace; font-size: 0.9em; color: #172B4D; }
+      
+      /* Markdown Body Styling - Dark Mode Overrides */
+      .dark .markdown-body { color: #d1d5db; } /* text-gray-300 */
+      .dark .markdown-body h1, .dark .markdown-body h2, .dark .markdown-body h3 { color: #f9fafb; } /* text-gray-50 */
+      .dark .markdown-body strong { color: #fff; }
+      .dark .markdown-body blockquote { background: #1f2937; color: #9ca3af; border-left-color: #3b82f6; }
+      .dark .markdown-body th { background-color: #111827; border-color: #374151; color: #e5e7eb; }
+      .dark .markdown-body td { border-color: #374151; color: #d1d5db; }
+      .dark .markdown-body tr:nth-child(even) { background-color: #1f2937; } /* gray-800 */
+      .dark .markdown-body code { background-color: #374151; color: #e5e7eb; }
+      .dark .markdown-body a { color: #60a5fa; } /* blue-400 */
+      
+      .markdown-body a {
+        color: #1456b8;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+      .markdown-body a:hover {
+        color: #0d3a7e;
+      }
+      .dark .markdown-body a:hover { color: #93c5fd; }
+      
+      .markdown-body h1 { font-size: 1.5em; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.3em; }
+      .dark .markdown-body h1 { border-bottom-color: #374151; }
+      .markdown-body h2 { font-size: 1.25em; }
+      .markdown-body h3 { font-size: 1.1em; }
+      .markdown-body p { margin-bottom: 1em; }
+      .markdown-body ul, .markdown-body ol { padding-left: 1.5em; margin-bottom: 1em; }
+      .markdown-body ul { list-style-type: disc; }
+      .markdown-body ol { list-style-type: decimal; }
+      .markdown-body li { margin-bottom: 0.25em; }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.3.1",
+    "react-dom": "https://esm.sh/react-dom@18.3.1",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+    "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime",
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
+    "react-markdown": "https://esm.sh/react-markdown@9.0.1?bundle",
+    "remark-gfm": "https://esm.sh/remark-gfm@4.0.0?bundle",
+    "framer-motion": "https://esm.sh/framer-motion@11.0.8?external=react,react-dom",
+    "clsx": "https://esm.sh/clsx@2.1.0",
+    "tailwind-merge": "https://esm.sh/tailwind-merge@2.2.1",
+    "@radix-ui/react-slot": "https://esm.sh/@radix-ui/react-slot@1.0.2?external=react,react-dom",
+    "class-variance-authority": "https://esm.sh/class-variance-authority@0.7.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
+</head>
+  <body class="bg-[#f9fafb] text-[#172B4D] font-sans antialiased overflow-hidden h-screen dark:bg-black dark:text-gray-100 transition-colors duration-300">
+    <div id="root" class="h-full flex flex-col"></div>
+  </body>
+</html>
